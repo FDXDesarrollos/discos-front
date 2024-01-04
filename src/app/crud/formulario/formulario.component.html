@@ -1,0 +1,52 @@
+<app-menu></app-menu>
+<div class="container col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h3>{{ titulo }}</h3>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="registrar(modelAlbum)" novalidate #form="ngForm">
+                <div class="form-group">
+                    <label for="titulo">Titulo</label>
+                    <input type="text" id="titulo" name="titulo" class="form-control" [(ngModel)]="modelAlbum.titulo" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="interprete">Interprete</label>
+                    <input type="text" id="interprete" name="interprete" class="form-control" [(ngModel)]="modelAlbum.interprete" required />
+                </div>
+                
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" name="fecha" class="form-control" [ngModel]='modelAlbum.fecha | date:"yyyy-MM-dd"' (ngModelChange)='modelAlbum.fecha=$event' required />
+                </div>
+                
+                <div class="form-group">
+                    <label for="genero">Genero</label>
+                    <input type="text" id="genero" name="genero" class="form-control" [(ngModel)]="modelAlbum.genero" required />
+                </div>
+                
+                <div class="form-group">
+                    <label for="precio">Precio</label>
+                    <input type="number" id="precio" name="precio" class="form-control" [(ngModel)]="modelAlbum.precio" required />
+                </div>
+                
+                <div *ngIf="isNuevo; else isEditar">
+                    <button class="btn btn-outline-success btn-block" [disabled]="!form.valid">
+                        <i class="far fa-edit"></i> Registrar
+                    </button>
+                </div>
+                <ng-template #isEditar>
+                    <button class="btn btn-outline-success btn-block" [disabled]="!form.valid">
+                        <i class="far fa-edit"></i> Actualizar
+                    </button>
+                </ng-template>                
+            </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-outline-primary btn-block" routerLink="/listar">
+                <i class="fas fa-arrow-alt-circle-left"></i> regresar
+            </button>
+        </div>        
+    </div>
+</div>

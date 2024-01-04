@@ -1,0 +1,15 @@
+<app-menu></app-menu>
+<div class="container text-center">
+    <div *ngIf="isLogged; else loggedOut">
+        <h2>Bienvenido {{usuario}}</h2>
+    </div>
+    <ng-template #loggedOut>
+        <h2>No has iniciado sesión</h2>
+    </ng-template>
+    <hr>
+    <div class="text-center mt-4">
+        <img src="assets/logo.png" alt="angular logo" width="500" />
+    </div>
+    <hr>
+</div>
+
