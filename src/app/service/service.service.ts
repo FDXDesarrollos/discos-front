@@ -3,34 +3,35 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Album } from '../modelo/album';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceService {
-  base_url = 'http://localhost:9090/api/album';
+  private endPoint = environment.endPoint;
 
   constructor(private http: HttpClient) { }
 
   lista(): Observable<Album[]>{
-    return this.http.get<Album[]>(this.base_url + '/listar');
+    return this.http.get<Album[]>(this.endPoint + '/listar');
   }
 
   detalle(id: number): Observable<Album>{
-    return this.http.get<Album>(this.base_url + `/detalle/${id}`)
+    return this.http.get<Album>(this.endPoint + `/detalle/${id}`)
   }  
 
   agrega(album: Album): Observable<any>{
-    return this.http.post<Album>(this.base_url + '/agregar', album);
+    return this.http.post<Album>(this.endPoint + '/agregar', album);
   }
 
   actualiza(album: Album): Observable<any>{
-    return this.http.put<Album>(this.base_url + `/actualizar/${album.id}`, album);
+    return this.http.put<Album>(this.endPoint + `/actualizar/${album.id}`, album);
   }
 
   elimina(id: number): Observable<any>{
-    return this.http.delete<Album>(this.base_url + `/eliminar/${id}`);
+    return this.http.delete<Album>(this.endPoint + `/eliminar/${id}`);
   }
 
 }

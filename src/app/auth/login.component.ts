@@ -12,11 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  isLogged: boolean = false;
   loginUsuario: LoginUsuario = {} as LoginUsuario;
   usuario: string = '';
   password: string = '';
-  roles: string[] = [];
   errMsg: string = '';
 
   constructor(
@@ -27,10 +25,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.tokenService.getToken()){
-      this.isLogged = true;
-      this.roles = this.tokenService.getAuthorities();
-    }
+
   }
 
   onLogin(): void {
@@ -38,21 +33,10 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.loginUsuario).subscribe({
       next: (response) => {
-        this.isLogged = true;
-
         this.tokenService.setToken(response.token);
-        this.tokenService.setUser(response.usuario);
-        this.tokenService.setAuthorities(response.authorities);
-        this.roles = response.authorities;
-        
-        this.toastr.success('Bienvenido ' + response.usuario, 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
-  
         this.router.navigate(['/']);        
       },
       error: (err) => {
-        this.isLogged = false;
         this.toastr.error(err.error.message, 'Error');        
       }
     });

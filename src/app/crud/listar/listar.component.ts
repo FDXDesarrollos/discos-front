@@ -14,7 +14,6 @@ import { TokenService } from 'src/app/service/token.service';
 })
 export class ListarComponent implements OnInit {
   albums:Album[] = [];
-  roles: string[] = [];
   isAdmin: boolean = false;
 
   constructor( private service: ServiceService, 
@@ -23,12 +22,7 @@ export class ListarComponent implements OnInit {
 
   ngOnInit(): void {
     this.listar();
-    this.roles = this.tokenService.getAuthorities();
-    this.roles.forEach(rol => {
-      if(rol == 'ROLE_ADMIN'){
-        this.isAdmin = true;
-      }
-    });
+    this.isAdmin = this.tokenService.isAdmin();
   }
 
   listar(): void {

@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegistroComponent implements OnInit {
   nuevoUsuario: NuevoUsuario = {} as NuevoUsuario; 
-  isLogged: boolean = false; 
   nombre: string = '';
   email = '';
   usuario: string = '';
@@ -28,9 +27,7 @@ export class RegistroComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.tokenService.getToken()){
-      this.isLogged = true;
-    }    
+    
   }
 
   onRegister(): void {

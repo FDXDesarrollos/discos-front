@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  endPoint: 'http://localhost:9090/api/album',
+  urlAuth: 'http://localhost:9090/auth/'
 };
 
 /*
