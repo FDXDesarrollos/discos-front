@@ -1,8 +1,8 @@
 export class EmailDTO {
-    private mailTo: string = '';
+    //private mailTo: string = '';
 
-    constructor(mailTo: string){
-        this.mailTo = mailTo;
+    constructor(private mailTo: string){
+        //this.mailTo = mailTo;
     }
 
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { EmailPasswordService } from '../service/email-password.service';
-import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ChangePassDTO } from '../modelo/change-pass-dto';
+import { ToastrService } from 'ngx-toastr';
+import { ChangePassDto } from '../modelo/change-pass-dto';
+import { EmailPasswordService } from '../service/email-password.service';
+
 
 @Component({
   selector: 'app-change-password',
@@ -14,7 +15,7 @@ export class ChangePasswordComponent implements OnInit {
   password: string = '';
   confirmaPassword: string = '';
   tokenPassword: string = '';
-  dto?: ChangePassDTO;
+  dto?: ChangePassDto;
 
   constructor(
     private emailPasswordService: EmailPasswordService,
@@ -37,7 +38,7 @@ export class ChangePasswordComponent implements OnInit {
     }
     else{
         this.tokenPassword = this.activatedRoute.snapshot.params["tokenPassword"];
-        this.dto = new ChangePassDTO(this.password, this.confirmaPassword, this.tokenPassword);
+        this.dto = new ChangePassDto(this.password, this.confirmaPassword, this.tokenPassword);
         this.emailPasswordService.changePassword(this.dto).subscribe(
             data => {
               this.toastrService.success(data.mensaje, 'OK', {

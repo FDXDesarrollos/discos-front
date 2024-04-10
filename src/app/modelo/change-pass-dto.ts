@@ -1,4 +1,4 @@
-export class ChangePassDTO {
+export class ChangePassDto {
     private password: string = '';
     private confirmPassword: string = '';
     private tokenPassword: string = '';
@@ -7,5 +7,5 @@ export class ChangePassDTO {
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.tokenPassword = tokenPassword;
-    }
+    }    
 }

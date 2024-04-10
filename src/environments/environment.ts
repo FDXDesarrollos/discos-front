@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   endPoint: 'http://localhost:9090/api/album',
-  urlAuth: 'http://localhost:9090/auth/'
+  urlAuth: 'http://localhost:9090/auth/',
+  changePassUrl: 'http://localhost:9090/recovery/'
 };
 
 /*
